@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2 class="text-center">Document List</h2>
+  <div class="container mt-4 blog-form-container">
+  <div class="card-container">
+    {% for d in documents %}
+      <div class="card">
+        <h3>{{ d.title }}</h3>
+        <a href="{{ d.file.url }}" target="_blank" data-file="{{ d.file.url }}">View Document</a>
+      </div>
+    {% endfor %}
+  </div>
+  </div>
+
+  <div id="document-modal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <iframe id="document-iframe" frameborder="0"></iframe>
+    </div>
+  </div>
+
+  <script>
+    const documentLinks = document.querySelectorAll('.document-link');
+    const modal = document.getElementById('document-modal');
+    const iframe = document.getElementById('document-iframe');
+    const closeBtn = document.querySelector('.close');
+
+    documentLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        const fileUrl = link.getAttribute('data-file');
+        iframe.src = fileUrl;
+        modal.style.display = 'block';
+      });
+    });
+
+    closeBtn.addEventListener('click', () => {
+      modal.style.display = 'none';
+      iframe.src = '';
+    });
+  </script>
+<style>
+    /* Add this to your CSS */
+    .card-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+    .card {
+        border: 1px solid #ccc;
+        padding: 10px;
+        width: 300px;
+        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+        transition: background-color 0.3s;
+    }
+    .card:hover{
+      background-color: rgba(57, 236, 12);
+    }
+    .blog-form-container {
+                background-color:rgb(29, 28, 28);
+                background-size: cover;
+                background-repeat: no-repeat;
+                background-position: center center;
+                padding: 66px;
+                border-radius: 10px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+                color:rgb(12, 12, 11); /* Adjust text color for better visibility */
+    }
+    .modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(64, 226, 15, 0.4);
+    }
+
+    .modal-content {
+        background-color: white;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        padding: 20px;
+        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    .close {
+        position: absolute;
+        top: 10px;
+        right: 15px;
+        font-size: 20px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+  </style>
+{% endblock %}

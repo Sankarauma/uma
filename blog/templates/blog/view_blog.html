@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title class="text-center">{{ post.title }}</title>
+    <!-- Include Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism.min.css">
+</head>
+<body>
+    <div class="container mt-4 blog-form-container">
+        <div class="card">
+            <div class="card-body">
+                <h2 class="card-title text-center font-italic">{{ post.title }}</h2>
+                {% if '<img' in post.content or '<code>' in post.content %}
+                <div class="text-center">
+                    {% autoescape off %}
+                      <pre class="language-html"><code>{{ post.content|safe }}</code></pre>
+                    {% endautoescape %}
+                </div>
+                {% else %}
+                    <p class="card-text">{{ post.content }}</p>
+                {% endif %}
+                <a href="{% url 'list_blogs' %}" class="btn btn-dark">Back to List</a>
+            </div>
+        </div>
+    </div>
+    <!-- Include Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/plugins/autoloader/prism-autoloader.min.js"></script>
+    <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <style>
+        .blog-form-container {
+            background-color:powderblue;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center center;
+            padding: 66px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            color: rgb(15, 16, 17); /* Adjust text color for better visibility */
+        }
+        .blog-form-container img {
+            max-width: 100%;
+            height: auto;
+        }
+   </style>
+</body>
+</html>

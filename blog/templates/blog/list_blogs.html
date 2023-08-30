@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="eng">
+<head>
+    {% extends 'base.html' %}
+
+    {% block title %}List Blogs{% endblock %}
+
+    {% block content %}
+    <title>Blog List</title>
+    <!-- Include Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <h1 class="text-center mb-4">Blog Posts</h1>
+    <div class="container mt-4 blog-form-container ">
+        <div class="row">
+            {% for post in posts %}
+            <div class="col-md-4">
+                <div class="card mb-4 blog-card">
+                    <div class="card-body">
+                        <h5 class="card-title blog-title">{{ post.title }}</h5>
+                         <!-- Check if the post content includes an image or code -->
+                         {% if '<img' in post.content or '<code>' in post.content %}
+                            <div class="card-text blog-content">
+                                {% autoescape off %}
+                                    {{ post.content | safe }}
+                                {% endautoescape %}
+                                &nbsp;&nbsp;
+                            </div>
+                        {% else %}
+                            <div class="card-text blog-content">
+                                {{ post.content | truncatewords:20 }}
+                                &nbsp;&nbsp;
+                            </div>
+                        {% endif %}
+                        <a href="{% url 'view_blog' post.id %}" class="btn btn-primary">View More</a>
+                        &nbsp; &nbsp; &nbsp;&nbsp;&nbsp;
+                            <form method="post" action="{% url 'delete_blog' post.id %}" class="d-inline">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                            </form>
+                    </div>
+                    
+                </div>
+                
+            </div>
+            {% endfor %}
+            <style>
+                .blog-form-container {
+                    background-color:rgb(25, 231, 238);
+                    background-size: cover;
+                    background-repeat: no-repeat;
+                    background-position: center center;
+                    padding: 66px;
+                    border-radius: 10px;
+                    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+                    color: rgb(15, 16, 17); /* Adjust text color for better visibility */
+                }
+
+                .blog-card {
+                    /* Your existing card styles */
+                    transition: background-color 0.3s; /* Adding a smooth transition effect */
+                }
+
+                .blog-card:hover {
+                    background-color: rgba(184, 12, 236, 0.2); /* Change the background color on hover */
+                }
+                .blog-content {
+                    max-height: 150px; /* Adjust this value to control the maximum height */
+                    overflow: hidden;
+                }
+                .blog-content img {
+                    max-width: 100%;
+                    height: auto;
+                }
+            </style>
+        </div>
+        {% endblock %}
+    </div>
+    <!-- Include Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

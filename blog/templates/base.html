@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="eng">
+<head>
+    <title>{% block title %}MyThoughts{% endblock %}</title>
+    <!-- Include Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    {% load static %}
+</head>
+<body>
+    <!-- <header class="navbar navbar-expand-lg navbar-light bg-dark">
+        <div class="container">
+            <a class="navbar-brand">
+                <img src="./../static/img/logo.png" alt="Logo" width="50" height="50">
+            </a>
+            <span class="navbar-text ml-auto">
+                "Your Blog Tagline or Quote Here"
+            </span>
+        </div>
+    </header> -->
+    <nav class="navbar navbar-expand-lg navbar-dark green bg-success">
+        <a class="navbar-brand logo">
+            <img src="./../static/img/logo.png" alt="Logo" border-radius="2" width="50" height="50">
+        </a>
+        <a class="navbar-brand">MyThoughts</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle active" id="blogsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Blogs
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="blogsDropdown">
+                        <a class="dropdown-item" href="{% url 'add_blog' %}">Add Blog</a>
+                        <a class="dropdown-item" href="{% url 'list_blogs' %}">List Blogs</a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle active" id="documentsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Documents
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="documentsDropdown">
+                        <a class="dropdown-item" href="{% url 'upload_document' %}">Upload Document</a>
+                        <a class="dropdown-item" href="{% url 'document_list' %}">Document List</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="{% url 'quiz:quiz_list' %}">Quiz</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        {% block content %}{% endblock %}
+    </div>&nbsp;&nbsp;
+    <!-- <footer class="footer bg-dark text-white py-3 px-0">
+        <div class="container">
+            &copy; {{ current_year }} Your MyThoughts. All rights reserved.
+        </div>
+    </footer> -->
+    <!-- Include Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <footer class="footer bg-light text-center py-3">
+        <div class="container">
+            &copy; {{ current_year }} Uma Sankara Pandita. All rights reserved.
+        </div>
+    </footer>
+    <style>
+        .navbar-nav .nav-item .nav-link:hover {
+            background-color: #08e4d1; /* Change this color to your preferred highlight color */
+            color: #000; /* Change text color on hover */
+        }
+        .logo img {
+        border-radius: 50%;
+       }
+    </style>
+</body>
+</html>

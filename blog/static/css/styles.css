@@ -1,0 +1,12 @@
+/* styles.css */
+.blog-title {
+    font-weight: bold;
+    font-size: 24px;
+}
+
+.blog-content {
+    font-weight: bold;
+    font-size: 18px;
+    max-height: 300px;
+    overflow: auto;
+}

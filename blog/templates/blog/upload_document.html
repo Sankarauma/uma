@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2 class="text-center">Upload Document</h2>
+<div class="container mt-4 blog-form-container">
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-success">Upload</button>
+  </form>
+</div>
+<style>
+  .blog-form-container {
+      background-color:rgb(29, 28, 28);
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center center;
+      padding: 66px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+      color:greenyellow; /* Adjust text color for better visibility */
+  }
+</style>
+{% endblock %}
+
