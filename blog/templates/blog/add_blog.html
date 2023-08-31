@@ -16,7 +16,7 @@
     <script src="https://cdn.tiny.cloud/1/ti11eq2yy580c9sjt5g9gnn3o50jr7c1y6zzteos4hyj9f9l/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
 </head>
 <body>
-    <div class="container mt-4 blog-form-container">
+    <div class="container-fluid mt-2 blog-form-container">
         <h1 class="text-center">Add your Thoughts</h1>
         <form method="post" class="col-md-15"width='100%'>
             {% csrf_token %}
@@ -67,6 +67,8 @@
                 <button type="submit" class="btn btn-success">Add Thought</button>
             </div>
         </form>
+  </div>
+ <div class="container-fluid mt-2 blog-form-container">
         <div class="blog-about-me-container">
             <h2 class="text-center">About me...</h2>
             <div class="row align-items-center">
@@ -82,8 +84,15 @@
                         </p>
                 </div>
             </div>
-        </div>
+      </div>
+    </div>
+
     <style>
+         body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
         .blog-form-container {
             background-color:rgb(29, 28, 28);
             background-size: cover;
@@ -112,5 +121,5 @@
     
   
     <!-- Include Bootstrap JS -->
-    </body>
+</body>
 </html>
